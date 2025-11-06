@@ -1,13 +1,22 @@
 server:
-  port: 8761
+    port: 8761
 
 spring:
-  application:
-    name: service-discovery
+    application:
+        name: service-discovery
 
 eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-  server:
-    enable-self-preservation: true
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+
+    server:
+        # 🔒 Desactiva el modo de auto-preservación para limpiar instancias caídas
+        enable-self-preservation: false
+
+        # 🔁 Intervalo de limpieza de instancias desconectadas (1 minuto)
+        eviction-interval-timer-in-ms: 60000
+
+        # 💡 Opcional: mejora estabilidad si hay muchos microservicios
+        response-cache-update-interval-ms: 3000
+        wait-time-in-ms-when-sync-empty: 0
